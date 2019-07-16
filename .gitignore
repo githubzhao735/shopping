@@ -3,7 +3,12 @@
 
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+
+.idea
+.vscode
+
+
+_pycache__/
 *.py[cod]
 *$py.class
 
