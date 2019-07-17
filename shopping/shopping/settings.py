@@ -25,25 +25,26 @@ SECRET_KEY = '3b8cc#o-sx%clozh&5695q37d7oqp9z*i2$=2kh5eh#xoij_lh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
+
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+    "user",
 ]
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'common.middleware.AuthMiddleware',
 ]
 
 ROOT_URLCONF = 'shopping.urls'
@@ -57,8 +58,8 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                # 'django.contrib.auth.context_processors.auth',
+                # 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
