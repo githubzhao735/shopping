@@ -1,11 +1,9 @@
 
 
 import datetime
-
 from django.core.cache import cache
 from django.db import models
-
-# from libs.orm import ModelToDictMixin
+from common.orm import ModelToDictMixin
 
 SEXS = (
     (0, '未知'),
@@ -51,12 +49,12 @@ class User(models.Model):
 
         return (today - birthday).days // 365
 
-    # @property
-    # def profile(self):
-    #     if not hasattr(self, '_profile'):
-    #         self._profile, _ = Profile.objects.get_or_create(pk=self.id)
-    #
-    #     return self._profile
+    @property
+    def profile(self):
+        if not hasattr(self, '_profile'):
+            self._profile, _ = Profile.objects.get_or_create(pk=self.id)
+
+        return self._profile
 
     # @property
     # def config(self):
@@ -96,7 +94,7 @@ class User(models.Model):
         db_table = 'users'
 
 
-# class Profile(models.Model, ModelToDictMixin):
+class Profile(models.Model, ModelToDictMixin):
     """
     location        目标城市
     min_distance    最小查找范围
@@ -110,14 +108,14 @@ class User(models.Model):
     user.profile.location
 
     """
-    # location = models.CharField(max_length=16, choices=LOCATIONS, default='gz')
-    # min_distance = models.IntegerField(default=0)
-    # max_distance = models.IntegerField(default=10)
-    # min_dating_age = models.IntegerField(default=18)
-    # max_dating_age = models.IntegerField(default=81)
-    # dating_sex = models.IntegerField(choices=SEXS, default=0)
-    #
-    # auto_play = models.BooleanField(default=True)
-    #
-    # class Meta:
-    #     db_table = 'profiles'
+    location = models.CharField(max_length=16, choices=LOCATIONS, default='gz')
+    min_distance = models.IntegerField(default=0)
+    max_distance = models.IntegerField(default=10)
+    min_dating_age = models.IntegerField(default=18)
+    max_dating_age = models.IntegerField(default=81)
+    dating_sex = models.IntegerField(choices=SEXS, default=0)
+
+    auto_play = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'profiles'

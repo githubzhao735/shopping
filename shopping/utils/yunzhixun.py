@@ -20,6 +20,5 @@ def send_sms(request,phone,sms_code):
         print(e)
         return return_json(RET.THIRDERR,'發送短信失敗')
     else:
-        print(8888)
-        print(resp)
+
         return resp
