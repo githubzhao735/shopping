@@ -26,6 +26,12 @@ YZX_SMS_PARAMS ={
     "mobile": None
 }
 
+#七牛云存储平台配置
+QINNIU_ACCESS_KEY = "9M_4LVjxHubwJP2yaT_uJTyeWJl-f9ct7zo3hVIG"
+QINNIU_SECRET_KEY = "KmfZX-JrW-Bj36R-5fjHAK_7AOTzTqnfsKFC1HMn"
+QINNIU_BUCKET_NAME = "shopping"
+QINNIU_HOST = "http://putktasgp.bkt.clouddn.com/"
+
 
 
 

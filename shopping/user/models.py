@@ -50,7 +50,7 @@ class User(models.Model):
         if not hasattr(self,"_profile"):
             self._profile ,_ = Profile.objects.get_or_create(pk=self.id)
 
-            return self._profile
+        return self._profile
 
     def to_dict(self):
 

@@ -6,6 +6,7 @@ urlpatterns = [
     path("login/",apis.Login.as_view(),name="login"),
     path("get_profile/",apis.GETProfiles.as_view(),name="get_profile"),
     path("set_profile/",apis.SETProfile.as_view(),name="set_profile"),
+    path("avatar/",apis.Avatar.as_view(),name="avatar"),
 
 ]
 

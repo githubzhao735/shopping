@@ -1,3 +1,6 @@
+import os
+import time
+
 from django.core.cache import cache
 from django.views.generic import View
 from common.errors import *
@@ -6,6 +9,8 @@ from common.utils import *
 from common.cache_config import *
 from libs import sms
 from libs.https import render_json
+from shopping.settings import MEDIA_ROOT
+from user import logics
 from user.models import User
 
 
@@ -70,12 +75,10 @@ class GETProfiles(View):
 
         return render_json(data=user.profile.to_dict())
 
-
 class SETProfile(View):
     """
     修改用户信息
     """
-
     def post(self,request):
         user = request.user
         form = ProfileForm(data=request.POST,instance = user.profile)
@@ -85,6 +88,28 @@ class SETProfile(View):
             return render_json()
 
         return render_json(data=form.errors)
+
+class Avatar(View):
+    """
+    处理用户头像相关信息
+    """
+    def post(self,request):
+        user = request.user
+        avatar = request.FILES.get("avatar")
+        avatar = avatar.read()
+        # file_name = "avator-{}".format(int(time.time()))
+        #
+        # file_path = logics.upload_avator(file_name,avatar)
+        # ret = logics.upload_qiniu(file_name,file_path)
+        #
+        # if ret:
+        #     return render_json()
+        # return render_json(code=QN_UPLOAD_ERROR)
+        # logics.aysnc_upload_save_avatar.delay(user,avatar)
+        ret = logics.upload_qiniu(avatar)
+        if ret:
+            return render_json()
+
 
 
 
